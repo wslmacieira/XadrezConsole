@@ -9,15 +9,36 @@ namespace XadrezConsole
         {
             for (int i = 0; i < tabuleiro.Linha; i++)
             {
+                Console.Write(8 - i + " ");
                 for (int j = 0; j < tabuleiro.Coluna; j++)
                 {
                     if (tabuleiro.Peca(i, j) == null)
                     {
                         Console.Write("- ");
                     }
-                    Console.Write(tabuleiro.Peca(i, j) + " ");
+                    else
+                    {
+                        Tela.ExibirPeca(tabuleiro.Peca(i, j));
+                        Console.Write(" ");
+                    }
                 }
                 Console.WriteLine();
+            }
+            Console.WriteLine("  A B C D E F G H");
+        }
+
+        public static void ExibirPeca(Peca peca)
+        {
+            if (peca.Cor == Cor.Branca)
+            {
+                Console.Write(peca);
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.Write(peca);
+                Console.ForegroundColor = aux;
             }
         }
     }
