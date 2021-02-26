@@ -1,4 +1,5 @@
 using System;
+using XadrezConsole.JogoXadrez;
 using XadrezConsole.TabuleiroXadrez;
 
 namespace XadrezConsole
@@ -27,6 +28,14 @@ namespace XadrezConsole
             Console.WriteLine("  A B C D E F G H");
         }
 
+        public static PosicaoXadrez LerPosicaoXadrez()
+        {
+            string s = Console.ReadLine().ToUpper();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+
+            return new PosicaoXadrez(coluna, linha);
+        }
         public static void ExibirPeca(Peca peca)
         {
             if (peca.Cor == Cor.Branca)
