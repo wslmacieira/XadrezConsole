@@ -17,11 +17,8 @@ namespace XadrezConsole
                     try
                     {
                         Console.Clear();
-                        Tela.ImprimirTabuleiro(partida.Tabuleiro);
 
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.Turno);
-                        Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
+                        Tela.ImprimirPartida(partida);
 
                         Console.WriteLine();
                         Console.Write("Origem: ");
@@ -44,7 +41,8 @@ namespace XadrezConsole
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
-
+                    Console.Clear();
+                    Tela.ImprimirPartida(partida);
                 }
 
             }
@@ -52,7 +50,7 @@ namespace XadrezConsole
             {
                 Console.WriteLine(e.Message);
             }
-
+            Console.ReadLine();
         }
     }
 }
