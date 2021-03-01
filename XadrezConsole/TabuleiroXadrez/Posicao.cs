@@ -10,6 +10,15 @@ namespace XadrezConsole.TabuleiroXadrez
             Linha = linha;
             Coluna = coluna;
         }
+        private readonly int coluna;
+        private readonly int linha;
+
+        public void DefinirValores(int linha, int coluna)
+        {
+            Linha = linha;
+            Coluna = coluna;
+
+        }
 
         public override string ToString()
         {
