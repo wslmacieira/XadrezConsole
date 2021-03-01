@@ -6,21 +6,21 @@ namespace XadrezConsole
 {
     public class Tela
     {
-        public static void ExibirTabuleiro(Tabuleiro tabuleiro)
+        public static void ImprimirTabuleiro(Tabuleiro tabuleiro)
         {
             for (int i = 0; i < tabuleiro.Linha; i++)
             {
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tabuleiro.Coluna; j++)
                 {
-                    Tela.ExibirPeca(tabuleiro.Peca(i, j));
+                    Tela.ImprimirPeca(tabuleiro.Peca(i, j));
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("  A B C D E F G H");
         }
 
-        public static void ExibirTabuleiro(Tabuleiro tabuleiro, bool[,] posicoesPossiveis)
+        public static void ImprimirTabuleiro(Tabuleiro tabuleiro, bool[,] posicoesPossiveis)
         {
             ConsoleColor fundoOriginal = Console.BackgroundColor;
             ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
@@ -38,7 +38,8 @@ namespace XadrezConsole
                     {
                         Console.BackgroundColor = fundoOriginal;
                     }
-                    ExibirPeca(tabuleiro.Peca(i, j));
+                    ImprimirPeca(tabuleiro.Peca(i, j));
+                    Console.BackgroundColor = fundoOriginal;
                 }
                 Console.WriteLine();
             }
@@ -54,7 +55,7 @@ namespace XadrezConsole
 
             return new PosicaoXadrez(coluna, linha);
         }
-        public static void ExibirPeca(Peca peca)
+        public static void ImprimirPeca(Peca peca)
         {
             if (peca == null)
             {

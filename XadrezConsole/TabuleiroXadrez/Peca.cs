@@ -1,3 +1,5 @@
+using System;
+
 namespace XadrezConsole.TabuleiroXadrez
 {
     public abstract class Peca
@@ -15,11 +17,37 @@ namespace XadrezConsole.TabuleiroXadrez
             Tabuleiro = tabuleiro;
         }
 
-        public abstract bool[,] MovimentosPossiveis();
-
         internal void IncrementarMovimento()
         {
             QtdMovimentos++;
+        }
+
+        public bool ExisteMovimentosPossiveis()
+        {
+            bool[,] mat = MovimentosPossiveis();
+            for (int i = 0; i < Tabuleiro.Linha; i++)
+            {
+                for (int j = 0; j < Tabuleiro.Coluna; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool MovimentoPossivel(Posicao posicao)
+        {
+            return MovimentosPossiveis()[posicao.Linha, posicao.Coluna];
+        }
+
+        public abstract bool[,] MovimentosPossiveis();
+
+        internal bool PodeMoverPara(Posicao destino)
+        {
+            throw new NotImplementedException();
         }
     }
 }
