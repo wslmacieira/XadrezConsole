@@ -32,14 +32,14 @@ namespace XadrezConsole.JogoXadrez
             }
 
             // abaixo
-            Posicao.DefinirValores(Posicao.Linha - 1, Posicao.Coluna);
+            Posicao.DefinirValores(Posicao.Linha + 1, Posicao.Coluna);
             while (Tabuleiro.PosicaoValida(Posicao) && PodeMover(Posicao))
             {
                 if (Tabuleiro.Peca(Posicao) != null && Tabuleiro.Peca(Posicao).Cor != Cor)
                 {
                     break;
                 }
-                Posicao.Linha = Posicao.Linha - 1;
+                Posicao.Linha = Posicao.Linha + 1;
             }
 
             // direita
