@@ -25,7 +25,6 @@ namespace XadrezConsole.JogoXadrez
             ColocarPecas();
         }
 
-
         private Cor Adversaria(Cor cor)
         {
             if (cor == Cor.Branca)
@@ -61,6 +60,38 @@ namespace XadrezConsole.JogoXadrez
             }
             return false;
         }
+
+        public bool TesteXequeMate(Cor cor)
+        {
+            if (!EstaEmXeque(cor))
+            {
+                return false;
+            }
+            foreach (Peca x in PecasEmJogo(cor))
+            {
+                bool[,] mat = x.MovimentosPossiveis();
+                for (int i = 0; i < Tabuleiro.Linha; i++)
+                {
+                    for (int j = 0; j < Tabuleiro.Coluna; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = x.Posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = ExecutaMovimento(origem, destino);
+                            bool testeXeque = EstaEmXeque(cor);
+                            DesfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         public Peca ExecutaMovimento(Posicao origem, Posicao destino)
         {
             Peca peca = Tabuleiro.RetirarPeca(origem);
@@ -75,7 +106,6 @@ namespace XadrezConsole.JogoXadrez
             return pecaCapturada;
         }
 
-
         public void DesfazMovimento(Posicao origem, Posicao destino, Peca pecacapturada)
         {
             Peca p = Tabuleiro.RetirarPeca(destino);
@@ -88,6 +118,7 @@ namespace XadrezConsole.JogoXadrez
             }
             Tabuleiro.ColocarPeca(p, origem);
         }
+
         public void RealizaJogada(Posicao origem, Posicao destino)
         {
             Peca pecaCapturada = ExecutaMovimento(origem, destino);
@@ -106,8 +137,15 @@ namespace XadrezConsole.JogoXadrez
                 Xeque = false;
             }
 
-            Turno++;
-            MudaJogador();
+            if (TesteXequeMate(Adversaria(JogadorAtual)))
+            {
+                Terminada = true;
+            }
+            else
+            {
+                Turno++;
+                MudaJogador();
+            }
         }
 
         public void ValidarPosicaoDeOrigem(Posicao posicao)
