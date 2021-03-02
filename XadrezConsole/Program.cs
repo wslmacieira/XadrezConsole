@@ -17,7 +17,6 @@ namespace XadrezConsole
                     try
                     {
                         Console.Clear();
-
                         Tela.ImprimirPartida(partida);
 
                         Console.WriteLine();
@@ -33,6 +32,7 @@ namespace XadrezConsole
                         Console.WriteLine();
                         Console.Write("Destino: ");
                         Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        partida.ValidarPosicaoDeDestino(origem, destino);
 
                         partida.RealizaJogada(origem, destino);
                     }
@@ -41,9 +41,9 @@ namespace XadrezConsole
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
-                    Console.Clear();
-                    Tela.ImprimirPartida(partida);
                 }
+                Console.Clear();
+                Tela.ImprimirPartida(partida);
 
             }
             catch (TabuleiroException e)

@@ -1,5 +1,3 @@
-using System;
-
 namespace XadrezConsole.TabuleiroXadrez
 {
     public abstract class Peca
@@ -12,9 +10,9 @@ namespace XadrezConsole.TabuleiroXadrez
         public Peca(Tabuleiro tabuleiro, Cor cor)
         {
             Posicao = null;
+            Tabuleiro = tabuleiro;
             Cor = cor;
             QtdMovimentos = 0;
-            Tabuleiro = tabuleiro;
         }
 
         internal void IncrementarMovimento()
@@ -48,10 +46,5 @@ namespace XadrezConsole.TabuleiroXadrez
         }
 
         public abstract bool[,] MovimentosPossiveis();
-
-        internal bool PodeMoverPara(Posicao destino)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

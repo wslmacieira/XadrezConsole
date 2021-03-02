@@ -10,7 +10,7 @@ namespace XadrezConsole.TabuleiroXadrez
         {
             Linha = linha;
             Coluna = coluna;
-            Pecas = new Peca[linha, coluna];
+            Pecas = new Peca[Linha, Coluna];
         }
 
         public Peca Peca(int linha, int coluna)
